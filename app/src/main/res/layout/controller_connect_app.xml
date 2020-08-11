@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:layout_collapseMode="pin"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_close"
+        app:title="@string/connect_app_title" />
+
+    <TextView
+        android:id="@+id/textView_connected"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:maxLines="2"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@id/frameLayout_camera_preview"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        tools:text="@string/connected_since" />
+
+    <TextView
+        android:id="@+id/textView_disconnected"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:maxLines="2"
+        android:text="@string/go_to_site_and_scan"
+        android:textColor="@color/colorPrimary"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/frameLayout_camera_preview"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        tools:text="@string/go_to_site_and_scan" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout_camera_preview"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
+        android:background="@drawable/bg_cornered_grey"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <com.budiyev.android.codescanner.CodeScannerView
+            android:id="@+id/surfaceView_camera_preview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:visibility="gone"
+            app:autoFocusButtonVisible="false"
+            app:flashButtonVisible="false"
+            app:frameColor="@android:color/transparent"
+            app:frameSize="1"
+            app:frameThickness="0dp" />
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/imageView_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_user"
+        app:layout_constraintBottom_toTopOf="@id/textView_username"
+        app:layout_constraintEnd_toEndOf="@id/frameLayout_camera_preview"
+        app:layout_constraintStart_toStartOf="@id/frameLayout_camera_preview"
+        app:layout_constraintTop_toTopOf="@id/frameLayout_camera_preview"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/textView_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimary"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="@id/frameLayout_camera_preview"
+        app:layout_constraintEnd_toEndOf="@+id/imageView_user"
+        app:layout_constraintStart_toStartOf="@+id/imageView_user"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_user"
+        tools:text="primelephants2" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_disconnect_app"
+        style="@style/AppTheme.Button.Outlined"
+        android:layout_width="328dp"
+        android:layout_height="43dp"
+        android:text="@string/disconnect_app_connection"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/frameLayout_camera_preview" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_views_when_connected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:constraint_referenced_ids="textView_connected,imageView_user,textView_username,button_disconnect_app" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
